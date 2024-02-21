@@ -22,3 +22,15 @@ jobs:
     
     - name: Build
       run: dotnet build --configuration Release
+
+    - name: Test
+      run: dotnet test --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish -c Release -o ${{ github.workspace }}/publish
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: publish
+        path: ${{ github.workspace }}/publish
