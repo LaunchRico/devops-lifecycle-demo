@@ -24,6 +24,20 @@ jobs:
                 docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
                 docker tag aspgithubactions rico98/aspgithubactions
                 docker push rico98/aspgithubactions
+    deployment:
+      runs-on: ubuntu-latest
+      environment: developer
+      steps:
+        - name: Setup key
+          id: setup-key
+          env:
+            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          run: |
+            echo "$PRIVATE_KEY" >> $HOME/key.pem
+            chmod 400 $HOME/key.pem
+        - name: Update image on server
+          run: ssh -i $HOME/key.pem -o ubuntu@18.208.192.234
+
 
 #            - name: Build and push Docker image
 #              run: |
