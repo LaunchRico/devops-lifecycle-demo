@@ -1,0 +1,17 @@
+name: asp net Docker Demo
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Build docker image
+              run: |
+                docker build -t  aspgithubactions .
