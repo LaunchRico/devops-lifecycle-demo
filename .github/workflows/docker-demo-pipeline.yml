@@ -36,7 +36,7 @@ jobs:
             echo "$PRIVATE_KEY" >> $HOME/key.pem
             chmod 400 $HOME/key.pem
         - name: Update image on server
-          run: ssh -i $HOME/key.pem -o ubuntu@18.208.192.234
+          run: ssh -i $HOME/key.pem ubuntu@18.208.192.234
 
 
 #            - name: Build and push Docker image
