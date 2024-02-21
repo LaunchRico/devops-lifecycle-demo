@@ -16,4 +16,5 @@ jobs:
               run: |
                 docker build -t aspgithubactions .
                 docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-                docker push rico98/aspgithubactions
+                docker tag aspgithubactions rico98/aspgithubactions
+                docker push aspgithubactions
